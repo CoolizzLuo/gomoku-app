@@ -45,9 +45,11 @@ const App = () => {
     ]
   })
   const [xIsNext, setXIsNext] = useState(true)
+  const [stepNumber, setStepNumber] = useState(0)
+
   const currentSquares = useMemo(() => {
-    return history[history.length - 1].squares
-  }, [history])
+    return history[stepNumber].squares
+  }, [history, stepNumber])
 
   const winner = useMemo(() => {
     return calculateWinner(currentSquares)
@@ -67,15 +69,20 @@ const App = () => {
     if (xIsNext === null || squares[i]) return
     squares[i] = xIsNext ? 'X' : 'O'
     setHistory([...history, {squares}])
+    setStepNumber(history.length)
     setXIsNext(!xIsNext)
   }, [history, xIsNext, currentSquares])
 
+  const jumpTo = (step) => {
+    setStepNumber(step)
+    setXIsNext((step % 2) === 0)
+  }
+
   const moves = history.map((step, move) => {
       const desc = move ? ('Go to move #' + move) : ('Go to game start')
-      const jumpTo = (move) => console.log(move)
   
       return (
-        <li>
+        <li key={move}>
           <button onClick={() => jumpTo(move)}>{desc}</button>
         </li>
       )

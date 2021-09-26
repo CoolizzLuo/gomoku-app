@@ -35,19 +35,21 @@ body {
 }
 
 .game-info {
-  width: 200px;
+  width: 250px;
   height: 38rem;
   overflow: auto;
   margin-left: 2rem;
+  padding-left: 1rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 350px) {
   html {
-    font-size: 12px;
+    transform: scale(.8);
   }
 }
 
-@media only screen and (min-width: 321px) and (max-width: 868px) {
+
+@media only screen and (min-width: 100px) and (max-width: 868px) {
   .game {
     flex-direction: column;
   }
@@ -57,3 +59,10 @@ body {
     margin-top: 4rem;
   }
 }
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+}
+

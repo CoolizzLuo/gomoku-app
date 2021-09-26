@@ -1,8 +1,10 @@
-import React, { useState, useCallback, useMemo } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import './App.css'
 import GameBoard from './GameBoard'
 import GameInfo from './GameInfo'
+import Footer from './Footer'
 import calculateWinner from '../calculateWinner'
+
 
 const App = () => {
   const [history, setHistory] = useState(() => [{ squares: Array(19).fill().map(() => Array(19).fill(0)) }])
@@ -46,22 +48,25 @@ const App = () => {
 
 
   return (
-    <div className="game">
-      <div className={blackIsNext ? 'black-hover' : 'white-hover'}>
-        <GameBoard 
-          squares={currentSquares}
-          onClick={handleClick}
-        />
+    <>
+      <div className="game">
+        <div className={blackIsNext ? 'black-hover' : 'white-hover'}>
+          <GameBoard 
+            squares={currentSquares}
+            onClick={handleClick}
+          />
+        </div>
+        <div className="game-info">
+          <GameInfo
+            status={status}
+            stepNumber={stepNumber}
+            history={history}
+            jumpTo={jumpTo}
+          />
+        </div>
       </div>
-      <div className="game-info">
-        <GameInfo
-          status={status}
-          stepNumber={stepNumber}
-          history={history}
-          jumpTo={jumpTo}
-        />
-      </div>
-    </div>
+      <Footer/>
+    </>
   )
 }
 

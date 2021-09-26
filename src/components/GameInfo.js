@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import styled from 'styled-components'
 
 const Button = styled.button`
@@ -13,17 +13,19 @@ const Button = styled.button`
   transition: .2s;
   cursor: pointer;
   user-select: none;
+  z-index: 1;
 
   &:active {
     transform: translateY(.2rem);
     box-shadow: none;
   }
 
-  /* ${props => props.stepNumber===props.move && `
+  ${(props) => props.active && `
+    font-weight: 900;
     background: #666;
     color: #ccc;
-  `} */
-
+    box-shadow: .1rem .1rem .1rem #333;
+  `}
 
   &:hover {
     background: #666;
@@ -37,10 +39,10 @@ const GameInfo = ({status, stepNumber, history, jumpTo}) => {
 
     return (
       <li key={`#${move}`}>
-        <Button onClick={() => jumpTo(move)}>{desc}</Button>
+        <Button active={stepNumber === move} onClick={() => jumpTo(move)}>{desc}</Button>
       </li>
     )
-  })), [history, jumpTo])
+  })), [history, stepNumber, jumpTo])
 
   return (
     <>

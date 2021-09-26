@@ -5,8 +5,8 @@ import GameInfo from './GameInfo'
 import calculateWinner from '../calculateWinner'
 
 const App = () => {
-  const [history, setHistory] = useState(() => [{ squares: Array(19).fill().map(() => Array(19).fill(null)) }])
-  const [xIsNext, setXIsNext] = useState(true)
+  const [history, setHistory] = useState(() => [{ squares: Array(19).fill().map(() => Array(19).fill(0)) }])
+  const [blackIsNext, setBlackIsNext] = useState(true)
   const [stepNumber, setStepNumber] = useState(0)
 
   const currentSquares = useMemo(() => {
@@ -19,33 +19,35 @@ const App = () => {
 
   const status = useMemo(() => {
     if (winner) {
-      setXIsNext(null)
-      return 'Winner: ' + winner;
+      setBlackIsNext(null)
+      return `Winner: ${winner === 1 ? 'Black' : 'White'}`;
     } else {
-      return 'Next player: ' + (xIsNext ? 'X' : 'O');
+      return 'Next player: ' + (blackIsNext ? 'Black' : 'White');
     }
-  }, [xIsNext, winner])
+  }, [blackIsNext, winner])
 
   const handleClick = useCallback((row, col) => {
     const newHistory = history.slice(0, stepNumber + 1)
-    const squares = [...[...currentSquares]] 
-    if (xIsNext === null || squares[row][col] ) return
-    // console.log(row, col);
-    squares[row][col] = xIsNext ? 'X' : 'O'
-    // console.log(squares);
+    const squares = [...currentSquares]
+    squares[row] = [...squares[row]]
+    if (blackIsNext === null || squares[row][col] ) return
+
+    squares[row][col] = blackIsNext ? 1 : 2
     setHistory([...history.slice(0, stepNumber + 1), {squares}])
     setStepNumber(newHistory.length)
-    setXIsNext(!xIsNext)
-  }, [history, xIsNext, currentSquares, stepNumber])
+    setBlackIsNext(!blackIsNext)
+  }, [history, blackIsNext, currentSquares, stepNumber])
 
   const jumpTo = useCallback((move) => {
+    console.log('call jumpTo ' + move);
     setStepNumber(move)
-    setXIsNext((move % 2) === 0)
-  }, [setStepNumber, setXIsNext])
+    setBlackIsNext((move % 2) === 0)
+  }, [setStepNumber, setBlackIsNext])
+
 
   return (
     <div className="game">
-      <div className="game-board">
+      <div className={blackIsNext ? 'black-hover' : 'white-hover'}>
         <GameBoard 
           squares={currentSquares}
           onClick={handleClick}

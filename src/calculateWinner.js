@@ -1,19 +1,62 @@
 export default function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+  for (let i = 0; i < 15; i++) {
+    for (let j = 0; j < 19; j++) {
+      if (
+        squares[i][j] !== 0 &&
+        squares[i][j] === squares[i + 1][j] &&
+        squares[i][j] === squares[i + 2][j] &&
+        squares[i][j] === squares[i + 3][j] &&
+        squares[i][j] === squares[i + 4][j]
+      ) {
+        return squares[i][[j]]
+      }
     }
   }
-  return null;
+
+  // rows
+  for (let i = 0; i < 19; i++) {
+    for (let j = 0; j < 15; j++) {
+      if (
+        squares[i][j] !== 0 &&
+        squares[i][j] === squares[i][j + 1] &&
+        squares[i][j] === squares[i][j + 2] &&
+        squares[i][j] === squares[i][j + 3] &&
+        squares[i][j] === squares[i][j + 4]
+      ) {
+        return squares[i][[j]]
+      }
+    }
+  }
+
+  // top - right
+  for (let i = 0; i < 15; i++) {
+    for (let j = 0; j < 15; j++) {
+      if (
+        squares[i][j] !== 0 &&
+        squares[i][j] === squares[i + 1][j + 1] &&
+        squares[i][j] === squares[i + 2][j + 2] &&
+        squares[i][j] === squares[i + 3][j + 3] &&
+        squares[i][j] === squares[i + 4][j + 4]
+      ) {
+        return squares[i][j]
+      }
+    }
+  }
+
+  // top - left
+  for (let i = 0; i < 15; i++) {
+    for (let j = 18; j > 3; j--) {
+      if (
+        squares[i][j] !== 0 &&
+        squares[i][j] === squares[i + 1][j - 1] &&
+        squares[i][j] === squares[i + 2][j - 2] &&
+        squares[i][j] === squares[i + 3][j - 3] &&
+        squares[i][j] === squares[i + 4][j - 4]
+      ) {
+        return squares[i][j]
+      }
+    }
+  }
+
+  return null
 }

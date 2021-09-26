@@ -1,40 +1,59 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+@font-face {
+  font-family: Cyber;
+  src: url("https://assets.codepen.io/605876/Blender-Pro-Bold.otf");
+  font-display: swap;
+}
+
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
-}
-
-ol, ul {
-  padding-left: 30px;
-}
-
-li {
-  padding-bottom: 10px;
-}
-
-.status {
-  margin-bottom: 10px;
-}
-
-.square:focus {
-  outline: none;
-}
-
-.kbd-navigation .square:focus {
-  background: #ddd;
+  font: 1.4rem "Cyber", Futura, sans-serif;
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .game {
   display: flex;
-  flex-direction: row;
+}
+
+.black-hover i:hover {
+  opacity: .4;
+  background: linear-gradient(315deg, #dadada, #fff);
+  box-shadow: inset 16px 14px 10px 1px #000, -3px -3px 3px -2px #353232;
+}
+
+.white-hover i:hover {
+  opacity: .4;
+  background: #ddd;
+  box-shadow: inset 16px 14px 10px 1px #fff, -3px -3px 3px -2px #666;
 }
 
 .game-info {
-  margin-left: 20px;
+  width: 200px;
+  height: 38rem;
+  overflow: auto;
+  margin-left: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 868px) {
+  .game {
+    flex-direction: column;
+  }
+  .game-info {
+    width: 90%;
+    text-align: center;
+    margin-top: 4rem;
+  }
 }

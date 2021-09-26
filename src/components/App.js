@@ -5,13 +5,7 @@ import GameInfo from './GameInfo'
 import calculateWinner from '../calculateWinner'
 
 const App = () => {
-  const [history, setHistory] = useState(() => {
-    return [
-      { 
-        squares: Array(9).fill(null) 
-      }
-    ]
-  })
+  const [history, setHistory] = useState(() => [{ squares: Array(19).fill().map(() => Array(19).fill(null)) }])
   const [xIsNext, setXIsNext] = useState(true)
   const [stepNumber, setStepNumber] = useState(0)
 
@@ -32,11 +26,13 @@ const App = () => {
     }
   }, [xIsNext, winner])
 
-  const handleClick = useCallback((i) => {
+  const handleClick = useCallback((row, col) => {
     const newHistory = history.slice(0, stepNumber + 1)
-    const squares = [...currentSquares] 
-    if (xIsNext === null || squares[i]) return
-    squares[i] = xIsNext ? 'X' : 'O'
+    const squares = [...[...currentSquares]] 
+    if (xIsNext === null || squares[row][col] ) return
+    // console.log(row, col);
+    squares[row][col] = xIsNext ? 'X' : 'O'
+    // console.log(squares);
     setHistory([...history.slice(0, stepNumber + 1), {squares}])
     setStepNumber(newHistory.length)
     setXIsNext(!xIsNext)

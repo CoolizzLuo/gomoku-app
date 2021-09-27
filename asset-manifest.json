@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/gomoku-app/static/css/main.95760387.chunk.css",
-    "main.js": "/gomoku-app/static/js/main.d5e5d29c.chunk.js",
-    "main.js.map": "/gomoku-app/static/js/main.d5e5d29c.chunk.js.map",
+    "main.css": "/gomoku-app/static/css/main.75f910fc.chunk.css",
+    "main.js": "/gomoku-app/static/js/main.ee2f3b58.chunk.js",
+    "main.js.map": "/gomoku-app/static/js/main.ee2f3b58.chunk.js.map",
     "runtime-main.js": "/gomoku-app/static/js/runtime-main.3b26bccc.js",
     "runtime-main.js.map": "/gomoku-app/static/js/runtime-main.3b26bccc.js.map",
-    "static/js/2.4c07816d.chunk.js": "/gomoku-app/static/js/2.4c07816d.chunk.js",
-    "static/js/2.4c07816d.chunk.js.map": "/gomoku-app/static/js/2.4c07816d.chunk.js.map",
+    "static/js/2.8d0647cc.chunk.js": "/gomoku-app/static/js/2.8d0647cc.chunk.js",
+    "static/js/2.8d0647cc.chunk.js.map": "/gomoku-app/static/js/2.8d0647cc.chunk.js.map",
     "index.html": "/gomoku-app/index.html",
-    "static/css/main.95760387.chunk.css.map": "/gomoku-app/static/css/main.95760387.chunk.css.map",
-    "static/js/2.4c07816d.chunk.js.LICENSE.txt": "/gomoku-app/static/js/2.4c07816d.chunk.js.LICENSE.txt"
+    "static/css/main.75f910fc.chunk.css.map": "/gomoku-app/static/css/main.75f910fc.chunk.css.map",
+    "static/js/2.8d0647cc.chunk.js.LICENSE.txt": "/gomoku-app/static/js/2.8d0647cc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3b26bccc.js",
-    "static/js/2.4c07816d.chunk.js",
-    "static/css/main.95760387.chunk.css",
-    "static/js/main.d5e5d29c.chunk.js"
+    "static/js/2.8d0647cc.chunk.js",
+    "static/css/main.75f910fc.chunk.css",
+    "static/js/main.ee2f3b58.chunk.js"
   ]
 }

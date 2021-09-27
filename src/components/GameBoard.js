@@ -16,15 +16,10 @@ const BoardWrapper = styled.div`
   &::after {
     content: '';
     position: absolute;
-    /* top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0; */
     inset: 0;
     border: calc(1rem - .4px) solid #BB9966;
     pointer-events: none;
   }
-
 `
 
 const SquareWrapper = styled.div`
@@ -71,17 +66,17 @@ const SquareWrapper = styled.div`
     height: 1.4rem;
     z-index: 1;
 
+    /* Black */
     ${props => props.chess === 1 && `
-      // border: 1px solid #ccc;
       background: linear-gradient(315deg, #dadada, #fff);
       box-shadow: inset 16px 14px 10px 1px #000, -3px -3px 3px -2px #353232;
       opacity: 1;
     `}
 
+    /* White */
     ${props => props.chess === 2 && `
-      // border: 1px solid #666;
-      background: #ddd;
-      box-shadow: inset 16px 14px 10px 1px #fff, -3px -3px 3px -2px #666;
+      background: linear-gradient(315deg, #ccc, #111);
+      box-shadow: inset 16px 14px 10px 1px #ddd, -3px -3px 3px -2px #666;
       opacity: 1;
     `}
 

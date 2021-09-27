@@ -12,7 +12,7 @@
 
 body {
   font: 1.4rem "Cyber", Futura, sans-serif;
-  margin: 2rem;
+  margin: 2rem 2rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,6 +20,16 @@ body {
 
 .game {
   display: flex;
+}
+
+.ending::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #333;
+  opacity: .5;
+  z-index: 2;
+  transition: all .2s;
 }
 
 .black-hover i:hover {
@@ -30,12 +40,12 @@ body {
 
 .white-hover i:hover {
   opacity: .4;
-  background: #ddd;
-  box-shadow: inset 16px 14px 10px 1px #fff, -3px -3px 3px -2px #666;
+  background: linear-gradient(315deg, #ccc, #111);
+  box-shadow: inset 16px 14px 10px 1px #ddd, -3px -3px 3px -2px #666;
 }
 
 .game-info {
-  width: 250px;
+  width: 200px;
   height: 38rem;
   overflow: auto;
   margin-left: 2rem;
@@ -56,7 +66,12 @@ body {
   .game-info {
     width: 90%;
     text-align: center;
+    font-size: 2rem;
     margin-top: 4rem;
+  }
+  button {
+    width: 80%;
+    padding: 4rem;
   }
 }
 

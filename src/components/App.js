@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo } from 'react'
 import './App.css'
+import Modal from './Modal'
 import GameBoard from './GameBoard'
 import GameInfo from './GameInfo'
 import Footer from './Footer'
@@ -11,22 +12,16 @@ const App = () => {
   const [blackIsNext, setBlackIsNext] = useState(true)
   const [stepNumber, setStepNumber] = useState(0)
 
-  const currentSquares = useMemo(() => {
-    return history[stepNumber].squares
-  }, [history, stepNumber])
-
-  const winner = useMemo(() => {
-    return calculateWinner(currentSquares)
-  }, [currentSquares])
-
+  const currentSquares = useMemo(() => history[stepNumber].squares, [history, stepNumber])
   const status = useMemo(() => {
+    const winner = calculateWinner(currentSquares)
     if (winner) {
       setBlackIsNext(null)
-      return `Winner: ${winner === 1 ? 'Black' : 'White'}`;
+      return `Winner: ${winner === 1 ? 'Black' : 'White'}`
     } else {
-      return 'Next player: ' + (blackIsNext ? 'Black' : 'White');
+      return 'Next player: ' + (blackIsNext ? 'Black' : 'White')
     }
-  }, [blackIsNext, winner])
+  }, [blackIsNext, currentSquares])
 
   const handleClick = useCallback((row, col) => {
     const newHistory = history.slice(0, stepNumber + 1)
@@ -35,13 +30,12 @@ const App = () => {
     if (blackIsNext === null || squares[row][col] ) return
 
     squares[row][col] = blackIsNext ? 1 : 2
-    setHistory([...history.slice(0, stepNumber + 1), {squares}])
+    setHistory([...newHistory, {squares}])
     setStepNumber(newHistory.length)
     setBlackIsNext(!blackIsNext)
   }, [history, blackIsNext, currentSquares, stepNumber])
 
   const jumpTo = useCallback((move) => {
-    console.log('call jumpTo ' + move);
     setStepNumber(move)
     setBlackIsNext((move % 2) === 0)
   }, [setStepNumber, setBlackIsNext])
@@ -49,6 +43,9 @@ const App = () => {
 
   return (
     <>
+      {/* <div className="ending">
+        <Modal/>
+      </div> */}
       <div className="game">
         <div className={blackIsNext ? 'black-hover' : 'white-hover'}>
           <GameBoard 

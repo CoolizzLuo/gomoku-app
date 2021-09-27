@@ -1,4 +1,4 @@
-export default function calculateWinner(squares) {
+export const calculateWinner = (squares) => {
   for (let i = 0; i < 15; i++) {
     for (let j = 0; j < 19; j++) {
       if (

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { GAME_SIZE } from '../constants/data'
 
 
 const BoardWrapper = styled.div`
@@ -26,8 +27,8 @@ const SquareWrapper = styled.div`
   box-sizing: border-box;
   /* border: 1px solid #aaa; */
   border-radius: 2px;
-  width: calc(100%/19);
-  height: calc(100%/19);
+  width: calc(100%/${GAME_SIZE});
+  height: calc(100%/${GAME_SIZE});
   flex-shrink: 0;
   flex-grow: 0;
   cursor: pointer;

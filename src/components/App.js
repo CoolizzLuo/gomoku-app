@@ -1,27 +1,28 @@
 import { useState, useCallback, useMemo } from 'react'
+import { GAME_SIZE } from '../constants/data'
+import { calculateWinner } from '../utils'
 import './App.css'
 import Modal from './Modal'
 import GameBoard from './GameBoard'
 import GameInfo from './GameInfo'
 import Footer from './Footer'
-import calculateWinner from '../calculateWinner'
 
 
 const App = () => {
-  const [history, setHistory] = useState(() => [{ squares: Array(19).fill().map(() => Array(19).fill(0)) }])
+  const [history, setHistory] = useState(() => [{ squares: Array(GAME_SIZE).fill().map(() => Array(GAME_SIZE).fill(0)) }])
   const [blackIsNext, setBlackIsNext] = useState(true)
   const [stepNumber, setStepNumber] = useState(0)
 
   const currentSquares = useMemo(() => history[stepNumber].squares, [history, stepNumber])
+  const winner = useMemo(() => calculateWinner(currentSquares), [currentSquares])
   const status = useMemo(() => {
-    const winner = calculateWinner(currentSquares)
     if (winner) {
       setBlackIsNext(null)
-      return `Winner: ${winner === 1 ? 'Black' : 'White'}`
+      return `Winner is: ${winner === 1 ? 'Black' : 'White'}`
     } else {
       return 'Next player: ' + (blackIsNext ? 'Black' : 'White')
     }
-  }, [blackIsNext, currentSquares])
+  }, [blackIsNext, winner])
 
   const handleClick = useCallback((row, col) => {
     const newHistory = history.slice(0, stepNumber + 1)
@@ -40,12 +41,21 @@ const App = () => {
     setBlackIsNext((move % 2) === 0)
   }, [setStepNumber, setBlackIsNext])
 
+  const renderModal = useCallback(() => (
+    <Modal 
+      msg={status}
+      showing={true}
+      reset={() => {
+        setStepNumber(0)
+        setHistory(history.slice(0, 1))
+        setBlackIsNext(true)
+      }
+    }/>
+  ), [status, history])
 
   return (
     <>
-      {/* <div className="ending">
-        <Modal/>
-      </div> */}
+      { winner && renderModal()}
       <div className="game">
         <div className={blackIsNext ? 'black-hover' : 'white-hover'}>
           <GameBoard 

@@ -1,14 +1,6 @@
 import { useMemo } from 'react'
 import styled from 'styled-components'
 
-const InfoWrapper = styled.div`
-  width: 200px;
-  height: 38rem;
-  overflow: auto;
-  margin-left: 2rem;
-  padding-left: 1rem;
-`
-
 const Button = styled.button`
   font-size: .7rem;
   padding: .3rem .4rem;
@@ -56,7 +48,7 @@ const GameInfo = ({status, stepNumber, history, jumpTo}) => {
     <>
       <div>{status}</div>
       <div>current step: {stepNumber}</div>
-      <ol>{moves}</ol>
+      <li>{moves}</li>
     </>
   )
 }

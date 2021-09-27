@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { ARTHUR, ARTHUR_MAIL, COPYRIGHT_YEAR } from '../constants/data'
 
 const FooterWrapper = styled.footer`
+  position: fixed;
   bottom: 0;
   right: 0;
   left: 0;
@@ -10,6 +11,7 @@ const FooterWrapper = styled.footer`
   text-align: center;
   padding: 0.1rem 0.5rem;
   margin-top: 2rem;
+  user-select: none;
   z-index: -1;
 
   span {

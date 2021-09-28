@@ -60,3 +60,36 @@ export const calculateWinner = (squares) => {
 
   return null
 }
+
+
+// function countTotal(squares, currentY, currentX, directionY, directionX) {
+//   const tempColor = squares[currentY][currentX]
+//   let tempY = currentY + directionY
+//   let tempX = currentX + directionX
+//   let total = 0
+
+//   while(tempX >= 0 && tempY >= 0 && squares[tempY][tempX] === tempColor) {
+//     total++
+//     tempY += directionY
+//     tempX += directionX
+//   }
+
+//   return total;
+// }
+
+// export function calculateWinner(squares, y, x) {
+//   if(y === null && x === null) return
+//   if (
+//     countTotal(squares, y, x, 1, 0) + countTotal(squares, y, x, -1, 0) >= 4 ||
+//     countTotal(squares, y, x, 0, 1) + countTotal(squares, y, x, 0, -1) >= 4 ||
+//     countTotal(squares, y, x, 1, 1) + countTotal(squares, y, x, -1, -1) >= 4 ||
+//     countTotal(squares, y, x, 1, -1) + countTotal(squares, y, x, -1, 1) >= 4
+//   ) {
+//     return squares[y][x];
+//   }
+
+//   if (squares.every((row) => row.every((col) => col))) {
+//     return "draw";
+//   }
+//   return null
+// }

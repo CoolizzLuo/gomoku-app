@@ -11,7 +11,7 @@ const ModalWrapper = styled.div`
   z-index: 3;
   user-select: none;
   animation: zoom-in 1s;
-  ${props => !props.isShow && `
+  ${({isShow}) => !isShow && `
     display: none;
   `}
 

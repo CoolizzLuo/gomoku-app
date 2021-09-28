@@ -9,6 +9,8 @@ const BoardWrapper = styled.div`
   width: 38rem;
   height: 38rem;
   display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
   flex-wrap: wrap;
   background: #BB9966;
   box-shadow: 6px 6px 10px rgba(51,51,51,0.6);
@@ -24,12 +26,12 @@ const BoardWrapper = styled.div`
 
   i:hover {
     opacity: .4;
-    ${(props) => props.hover && `
+    ${({hover}) => hover && `
       background: linear-gradient(315deg, #dadada, #fff);
       box-shadow: inset 16px 14px 10px 1px #000, -3px -3px 3px -2px #353232;
     `}
 
-    ${(props) => !props.hover && `
+    ${({hover}) => !hover && `
       background: linear-gradient(315deg, #ccc, #111);
       box-shadow: inset 16px 14px 10px 1px #ddd, -3px -3px 3px -2px #666;
     `}
@@ -80,14 +82,14 @@ const SquareWrapper = styled.div`
     z-index: 1;
 
     /* Black */
-    ${props => props.chess === 1 && `
+    ${({chess}) => chess === 1 && `
       background: linear-gradient(315deg, #dadada, #fff);
       box-shadow: inset 16px 14px 10px 1px #000, -3px -3px 3px -2px #353232;
       opacity: 1;
     `}
 
     /* White */
-    ${props => props.chess === 2 && `
+    ${({chess}) => chess === 2 && `
       background: linear-gradient(315deg, #ccc, #111);
       box-shadow: inset 16px 14px 10px 1px #ddd, -3px -3px 3px -2px #666;
       opacity: 1;
@@ -103,7 +105,7 @@ const SquareWrapper = styled.div`
       left: 50%;
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      ${props => (props.mark && !props.chess) && `
+      ${({mark, chess}) => (mark && !chess) && `
         content: '';
         width: .5rem;
         height: .5rem;

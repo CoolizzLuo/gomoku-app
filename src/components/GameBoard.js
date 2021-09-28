@@ -21,6 +21,20 @@ const BoardWrapper = styled.div`
     border: calc(1rem - .4px) solid #BB9966;
     pointer-events: none;
   }
+
+  i:hover {
+    opacity: .4;
+    ${(props) => props.hover && `
+      background: linear-gradient(315deg, #dadada, #fff);
+      box-shadow: inset 16px 14px 10px 1px #000, -3px -3px 3px -2px #353232;
+    `}
+
+    ${(props) => !props.hover && `
+      background: linear-gradient(315deg, #ccc, #111);
+      box-shadow: inset 16px 14px 10px 1px #ddd, -3px -3px 3px -2px #666;
+    `}
+  }
+
 `
 
 const SquareWrapper = styled.div`
@@ -41,8 +55,7 @@ const SquareWrapper = styled.div`
     top: 0;
     bottom: 0;
     left: 50%;
-    width: 1px;
-    background: #111;
+    border-left: 1px solid #111;
     transform: translateX(-50%);
   }
 
@@ -52,8 +65,7 @@ const SquareWrapper = styled.div`
     left: 0;
     right: 0;
     top: 50%;
-    height: 1px;
-    background: #111;
+    border-top: 1px solid #111;
     transform: translateY(-50%);
   }
 
@@ -103,10 +115,10 @@ const SquareWrapper = styled.div`
 
 const isMark = (row, col) => [4, 10, 16].includes(row + 1) && [4, 10, 16].includes(col + 1)
 
-const GameBoard = ({squares, onClick}) => {
+const GameBoard = ({hover, squares, onClick}) => {
 
   return (
-    <BoardWrapper>
+    <BoardWrapper hover={hover}>
       { 
         squares.map((row_square, row) => (
           row_square.map((col_square, col) => (

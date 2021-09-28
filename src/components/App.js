@@ -7,7 +7,6 @@ import GameBoard from './GameBoard'
 import GameInfo from './GameInfo'
 import Footer from './Footer'
 
-
 const App = () => {
   const [history, setHistory] = useState(() => [{ squares: Array(GAME_SIZE).fill().map(() => Array(GAME_SIZE).fill(0)) }])
   const [blackIsNext, setBlackIsNext] = useState(true)
@@ -18,7 +17,7 @@ const App = () => {
   const status = useMemo(() => {
     if (winner) {
       setBlackIsNext(null)
-      return `Winner is: ${winner === 1 ? 'Black' : 'White'}`
+      return `Winner is ${winner === 1 ? 'Black' : 'White'}`
     } else {
       return 'Next player: ' + (blackIsNext ? 'Black' : 'White')
     }
@@ -55,22 +54,19 @@ const App = () => {
 
   return (
     <>
-      { winner && renderModal()}
       <div className="game">
-        <div className={blackIsNext ? 'black-hover' : 'white-hover'}>
-          <GameBoard 
-            squares={currentSquares}
-            onClick={handleClick}
+        { winner && renderModal()}
+        <GameBoard 
+          hover={blackIsNext}
+          squares={currentSquares}
+          onClick={handleClick}
+        />
+        <GameInfo
+          status={status}
+          stepNumber={stepNumber}
+          history={history}
+          jumpTo={jumpTo}
           />
-        </div>
-        <div className="game-info">
-          <GameInfo
-            status={status}
-            stepNumber={stepNumber}
-            history={history}
-            jumpTo={jumpTo}
-          />
-        </div>
       </div>
       <Footer/>
     </>

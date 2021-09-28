@@ -15,7 +15,7 @@ const ModalWrapper = styled.div`
     display: none;
   `}
 
-@keyframes zoom-in {
+  @keyframes zoom-in {
     from {opacity: 0;}
     to {opacity: 1;}
   }

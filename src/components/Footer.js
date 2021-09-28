@@ -2,10 +2,8 @@ import styled from 'styled-components'
 import { ARTHUR, ARTHUR_MAIL, COPYRIGHT_YEAR } from '../constants/data'
 
 const FooterWrapper = styled.footer`
-  position: fixed;
+  position: relative;
   bottom: 0;
-  right: 0;
-  left: 0;
   letter-spacing: 0.05rem;
   background: transparent;
   text-align: center;
@@ -31,7 +29,7 @@ const FooterWrapper = styled.footer`
 
 const Footer = () => (
   <FooterWrapper>
-    <span>&copy; copyright {COPYRIGHT_YEAR} by <a href={`mailto${ARTHUR_MAIL}`}>{ARTHUR}</a></span>
+    <span>&copy; copyright {COPYRIGHT_YEAR} by <a href={`mailto:${ARTHUR_MAIL}`}>{ARTHUR}</a></span>
   </FooterWrapper>
 )
 

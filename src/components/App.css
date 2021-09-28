@@ -12,37 +12,18 @@
 
 body {
   font: 1.4rem "Cyber", Futura, sans-serif;
-  margin: 2rem 2rem 0;
+  margin: 1rem 2rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .game {
-  margin-top: 4rem;
+  margin-top: 1rem;
   display: flex;
   user-select: none;
 }
 
-.black-hover i:hover {
-  opacity: .4;
-  background: linear-gradient(315deg, #dadada, #fff);
-  box-shadow: inset 16px 14px 10px 1px #000, -3px -3px 3px -2px #353232;
-}
-
-.white-hover i:hover {
-  opacity: .4;
-  background: linear-gradient(315deg, #ccc, #111);
-  box-shadow: inset 16px 14px 10px 1px #ddd, -3px -3px 3px -2px #666;
-}
-
-.game-info {
-  width: 200px;
-  height: 38rem;
-  overflow: auto;
-  margin-left: 2rem;
-  padding-left: 1rem;
-}
 
 
 @media screen and (max-width: 450px) {
@@ -58,16 +39,6 @@ body {
 @media only screen and (min-width: 100px) and (max-width: 868px) {
   .game {
     flex-direction: column;
-  }
-  .game-info {
-    width: 90%;
-    text-align: center;
-    font-size: 2rem;
-    margin-top: 4rem;
-  }
-  button {
-    width: 80%;
-    padding: 4rem;
   }
 }
 

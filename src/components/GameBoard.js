@@ -80,20 +80,39 @@ const SquareWrapper = styled.div`
     width: 1.4rem;
     height: 1.4rem;
     z-index: 1;
+    
 
-    /* Black */
-    ${({chess}) => chess === 1 && `
+    /* Black chess */
+    ${({chess}) => (chess === 1 || chess === 6) && `
       background: linear-gradient(315deg, #dadada, #fff);
       box-shadow: inset 16px 14px 10px 1px #000, -3px -3px 3px -2px #353232;
       opacity: 1;
     `}
 
-    /* White */
-    ${({chess}) => chess === 2 && `
+    /* White chess */
+    ${({chess}) => (chess === 2 || chess === 7) && `
       background: linear-gradient(315deg, #ccc, #111);
       box-shadow: inset 16px 14px 10px 1px #ddd, -3px -3px 3px -2px #666;
       opacity: 1;
     `}
+
+    /* Winner chess */
+    ${({chess}) => (chess === 6 || chess === 7) && `
+      animation: shine 1.5s infinite;
+    `}
+
+    @keyframes shine{
+      10% {
+        opacity: 1;
+        transition-property: left, top, opacity;
+        transition-duration: 0.7s, 0.7s, 0.15s;
+        transition-timing-function: ease;
+      }
+      100% {
+        opacity: 0;
+        transition-property: left, top, opacity;
+      }
+    }
 
     &:active {
       transform: translate(-60%, -60%);
@@ -117,12 +136,12 @@ const SquareWrapper = styled.div`
 
 const isMark = (row, col) => [4, 10, 16].includes(row + 1) && [4, 10, 16].includes(col + 1)
 
-const GameBoard = ({hover, squares, onClick}) => {
-
+const GameBoard = ({winner, winnerBoard, hover, squares, onClick}) => {
+  
   return (
-    <BoardWrapper hover={hover}>
+    <BoardWrapper hover={hover} >
       { 
-        squares.map((row_square, row) => (
+        (winner ? winnerBoard : squares).map((row_square, row) => (
           row_square.map((col_square, col) => (
             <SquareWrapper 
               key={`${row}-${col}`} 

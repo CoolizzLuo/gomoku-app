@@ -20,7 +20,7 @@ const BoardWrapper = styled.div`
     content: '';
     position: absolute;
     inset: 0;
-    border: calc(1rem - 0.4px) solid #BB9966;
+    border: calc(1rem - .4px) solid #BB9966;
     pointer-events: none;
   }
 
@@ -145,10 +145,12 @@ const GameBoard = ({winner, winnerBoard, hover, squares, onClick}) => {
           row_square.map((chessValue, col) => (
             <SquareWrapper 
               key={`${row}-${col}`} 
-              mark={isMark(row, col)}
               onClick={() => onClick(row, col)}
             >
-              <Chess chess={chessValue}/>
+              <Chess 
+                mark={isMark(row, col)}
+                chess={chessValue}
+              />
             </SquareWrapper>
           ))
         ))
